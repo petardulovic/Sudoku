@@ -1,0 +1,31 @@
+.container {
+    display: inline;
+    padding-top: 30px;
+}
+img {
+    height: 30px;
+    width: 30px
+}   
+.btn {
+    height: 50px;
+    width: 50px;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+.btnActive {
+    height: 50px;
+    width: 50px;
+    vertical-align: bottom;
+    color: purple;
+    border-color: greenyellow;
+    margin-left: 10px;
+    background-color: honeydew;
+}
+
+
+.btnActive:hover{
+    color: purple;
+    border-color: green;
+    margin-left: 10px;
+    background-color: honeydew;
+}
