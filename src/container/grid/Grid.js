@@ -78,16 +78,23 @@ export default function Grid(props) {
         if (number < 1) {
             elem.value = ' '
         }
-        if (number > 9) {
-            elem.value = ' '
+        if (number > 9 && filling) {
+            elem.value = number[1]
         }
         if (filling && divChange !== null) {
             divChange.style.display = '';
             const para  = document.getElementById(`${focused}${number}`);
-            para.style.display = 'block';
+            if(para.style.display == 'block'){
+                para.style.display = 'none';
+            }else{
+                para.style.display = 'block';
+            }   
             const inp = document.getElementById(`i${focused}`);
             inp.value = ' ';
         } else {
+            if (number > 9 && number[1] >=1 && number[1] <= 9 ) {
+                elem.value = number[1];
+            }
             if (number[0] <= 9 && number[0] && divChange !== null || (number[0] <= 9 && number[0] >= 1 && number[1] <= 9 && number[1] >= 1 && divChange !== null)) {
                 divChange.style.display = 'none';
                 if(number[1] == undefined){

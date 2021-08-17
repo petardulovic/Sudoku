@@ -11,17 +11,26 @@ export default function Input(props) {
         if (event.target.value < 1) {
             elem.value = ' '
         }
-        if (event.target.value > 9) {
-            elem.value = ' '
+        if (event.target.value > 9 && props.filling ) {
+            elem.value = event.target.value[1];
         }
         if (props.filling) {
-            divChange.style.display = '';
-            const para  = document.getElementById(`${props.id}${event.target.value}`);
-            para.style.display = 'block';
-            const inp = document.getElementById(`i${props.id}`);
-            inp.value = ' ';
+            if(event.target.value[0] <= 9 && event.target.value[0] >= 1 || (event.target.value[0] <= 9 && event.target.value[0] >= 1 && event.target.value[1] <= 9 && event.target.value[1] >= 1)){
+                divChange.style.display = '';
+                const para  = document.getElementById(`${props.id}${event.target.value}`);
+                if(para.style.display == 'block'){
+                    para.style.display = 'none';
+                }else{
+                    para.style.display = 'block';
+                }
+                const inp = document.getElementById(`i${props.id}`);
+                inp.value = ' ';
+            }
         } else {
-            if (event.target.value[0] <= 9 && event.target.value[0] || (event.target.value[0] <= 9 && event.target.value[0] >= 1 && event.target.value[1] <= 9 && event.target.value[1] >= 1)) {
+            if (event.target.value > 9 && event.target.value[1] >=1 && event.target.value[1] <= 9 ) {
+                elem.value = event.target.value[1];
+            }
+            if (event.target.value[0] <= 9 && event.target.value[0] >= 1 || (event.target.value[0] <= 9 && event.target.value[0] >= 1 && event.target.value[1] <= 9 && event.target.value[1] >= 1)) {
                 divChange.style.display = 'none';
                 if(event.target.value[1] == undefined){
                     elem.value = event.target.value[0];
@@ -55,15 +64,21 @@ export default function Input(props) {
                 onFocus={(event) => props.focused(props.id)}
             />
             <div id={`d${props.id}`} className={styles.stack} >
-                <p id={`${props.id}1`} style={{ float: 'left', display:'none' }}>1</p>
-                <p id={`${props.id}3`} style={{ float: 'right', display:'none' }}>3</p>
-                <p id={`${props.id}2`} style={{display:'none'}} >2</p>
-                <p id={`${props.id}4`} style={{ float: 'left', display:'none' }}>4</p>
-                <p id={`${props.id}6`} style={{ float: 'right', display:'none' }}>6</p>
-                <p id={`${props.id}5`} style={{display:'none'}} >5</p>
-                <p id={`${props.id}7`} style={{ float: 'left', display:'none' }}>7</p>
-                <p id={`${props.id}9`} style={{ float: 'right', display:'none' }}>9</p>
-                <p id={`${props.id}8`} style={{display:'none'}} >8</p>
+                <div  style={{width: '100%', height:'33%'}}>
+                <p id={`${props.id}1`} style={{verticalAlign: 'top', float: 'left', display:'none' }}>1</p>
+                <p id={`${props.id}3`} style={{ verticalAlign: 'top',float: 'right', display:'none' }}>3</p>
+                <p id={`${props.id}2`} style={{verticalAlign: 'top', display:'none'}} >2</p>
+                </div>
+                <div  style={{width: '100%', height:'33%'}}>
+                <p id={`${props.id}4`} style={{verticalAlign: 'middle', float: 'left', display:'none' }}>4</p>
+                <p id={`${props.id}6`} style={{verticalAlign: 'middle', float: 'right', display:'none' }}>6</p>
+                <p id={`${props.id}5`} style={{verticalAlign: 'middle',display:'none'}} >5</p>
+                </div>
+                <div style={{width: '100%', height:'33%'}}>
+                <p id={`${props.id}7`} style={{verticalAlign: 'bottom',  float: 'left', display:'none' }}>7</p>
+                <p id={`${props.id}9`} style={{verticalAlign: 'bottom',  float: 'right', display:'none' }}>9</p>
+                <p id={`${props.id}8`} style={{verticalAlign: 'bottom', display:'none'}} >8</p>
+                </div>
             </div>
 
         </div>
